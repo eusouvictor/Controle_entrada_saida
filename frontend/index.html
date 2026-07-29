@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autorização de Entrada e Saída</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div>
+          <span class="brand">Oggi Autorização</span>
+          <p class="subtitle">Gestão de entrada, saída e auditoria em fluxo 100% digital</p>
+        </div>
+        <div class="user-badge" id="currentUserBadge">
+          <strong>Usuário:</strong> <span id="currentUserName">carregando...</span>
+          <small id="currentUserRole"></small>
+        </div>
+      </header>
+
+      <main class="layout-grid">
+        <section class="card card-primary">
+          <div class="card-heading">
+            <div>
+              <h1>Nova solicitação</h1>
+              <p>Preencha com seleção de dados e registre a autorização imediatamente.</p>
+            </div>
+            <span class="badge-status">Autenticação obrigatória</span>
+          </div>
+
+          <form id="requestForm" autocomplete="off">
+            <div class="form-row">
+              <label for="colaboradorSelect">Colaborador</label>
+              <select id="colaboradorSelect" required>
+                <option value="">Selecionar colaborador</option>
+              </select>
+            </div>
+
+            <div class="form-row half">
+              <label for="matriculaField">Matrícula</label>
+              <input id="matriculaField" type="text" readonly placeholder="Preenchido automaticamente" />
+            </div>
+            <div class="form-row half">
+              <label for="cargoField">Cargo</label>
+              <input id="cargoField" type="text" readonly placeholder="Preenchido automaticamente" />
+            </div>
+            <div class="form-row half">
+              <label for="departamentoSelect">Departamento</label>
+              <select id="departamentoSelect" required>
+                <option value="">Selecionar departamento</option>
+              </select>
+            </div>
+            <div class="form-row half">
+              <label for="tipoSelect">Tipo de autorização</label>
+              <select id="tipoSelect" required>
+                <option value="">Selecionar tipo</option>
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="motivoField">Motivo</label>
+              <textarea id="motivoField" rows="3" placeholder="Descreva o motivo da saída ou entrada"></textarea>
+            </div>
+
+            <div class="form-row half">
+              <label for="supervisorSelect">Supervisor responsável</label>
+              <select id="supervisorSelect" required>
+                <option value="">Selecionar supervisor</option>
+              </select>
+            </div>
+            <div class="form-row half">
+              <label for="solicitacaoAt">Data e hora do registro</label>
+              <input id="solicitacaoAt" type="text" readonly />
+            </div>
+
+            <div class="actions-row">
+              <button type="button" id="saveRequest">Registrar solicitação</button>
+              <button type="button" id="resetForm" class="secondary">Limpar</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="card card-secondary">
+          <div class="card-heading">
+            <h2>Controle e auditoria</h2>
+          </div>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>Fluxo paperless</strong>
+              <p>O RH emite a autorização digital e a Portaria confirma a saída ou entrada.</p>
+            </div>
+            <div class="info-box">
+              <strong>Registro de acesso</strong>
+              <p>Registros de confirmações são persistidos em <code>registros_acesso</code>.</p>
+            </div>
+            <div class="info-box">
+              <strong>Auditoria</strong>
+              <p>Todas as ações ficam em <code>auditoria</code> com hora, usuário e operação.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card card-tertiary">
+          <div class="card-heading">
+            <h2>Solicitações recentes</h2>
+          </div>
+          <div class="table-container">
+            <table id="requestsTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Colaborador</th>
+                  <th>Departamento</th>
+                  <th>Tipo</th>
+                  <th>Status</th>
+                  <th>Enviado em</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card card-tertiary">
+          <div class="card-heading">
+            <h2>Últimos acessos</h2>
+          </div>
+          <div class="table-container">
+            <table id="accessTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Solicitação</th>
+                  <th>Portaria</th>
+                  <th>Confirmado em</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
