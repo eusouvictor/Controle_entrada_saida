@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestão de Funcionários - Oggi Sorvetes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="/public/app.js"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#68dba9",
+                    "primary": "#a80062",
+                    "secondary-fixed": "#dce1ff",
+                    "surface-container-low": "#eff4ff",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#d3e4fe",
+                    "primary-fixed": "#ffd9e4",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-primary-fixed": "#3e0021",
+                    "on-tertiary-fixed-variant": "#005137",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#b7c4ff",
+                    "tertiary-container": "#007e57",
+                    "on-surface": "#0b1c30",
+                    "secondary": "#1d4ed8",
+                    "tertiary-fixed": "#85f8c4",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary-fixed": "#002114",
+                    "surface-container": "#e5eeff",
+                    "inverse-surface": "#213145",
+                    "primary-container": "#d1157d",
+                    "on-surface-variant": "#594048",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#c5ffdf",
+                    "on-secondary-fixed-variant": "#0039b5",
+                    "on-primary-fixed-variant": "#8d0051",
+                    "outline-variant": "#e0bec8",
+                    "secondary-container": "#4069f2",
+                    "surface": "#f8f9ff",
+                    "surface-tint": "#b8006c",
+                    "on-background": "#0b1c30",
+                    "surface-container-high": "#dce9ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#ffeef1",
+                    "background": "#f8f9ff",
+                    "on-secondary": "#ffffff",
+                    "outline": "#8c6f79",
+                    "primary-fixed-dim": "#ffb0cc",
+                    "on-secondary-fixed": "#001551",
+                    "tertiary": "#006343",
+                    "on-secondary-container": "#fffbff",
+                    "inverse-primary": "#ffb0cc",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-page": "1.5rem",
+                    "section-gap": "2rem",
+                    "padding-card": "2.5rem",
+                    "container-max": "800px",
+                    "element-gap": "1rem",
+                    "form-gutter": "1.5rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+                    "headline-xl-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopNavBar Cluster -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-lowest shadow-sm dark:shadow-none border-b border-surface-variant sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg text-primary font-bold">Oggi Sorvetes Admin</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="/">Nova Autorização</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="/HistoricoAutorizacao.html">Histórico</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="/GestaoFuncionarios.html">Funcionários</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="/ConfiguracaoFuncionario.html">Configurações</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="max-w-7xl mx-auto px-6 py-8">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface">Gestão de Funcionários</h1>
+<p class="text-on-surface-variant font-body-md text-body-md mt-1">Visualize, edite e cadastre novos colaboradores da unidade.</p>
+</div>
+<button class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md active:scale-95 transition-transform shadow-md">
+<span class="material-symbols-outlined">person_add</span>
+                Adicionar Novo Funcionário
+            </button>
+</div>
+<!-- Filters & Search -->
+<div class="bg-surface-container-lowest rounded-xl p-4 custom-shadow mb-8 border border-surface-variant flex flex-col md:flex-row gap-4 items-center">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-background border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-body-md font-body-md" placeholder="Buscar por nome ou CPF..." type="text"/>
+</div>
+<div class="flex items-center gap-2 w-full md:w-auto">
+<select class="bg-background border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+<option>Todos Departamentos</option>
+<option>Produção</option>
+<option>Logística</option>
+<option>Administrativo</option>
+<option>Vendas</option>
+</select>
+<button class="flex items-center justify-center gap-2 px-4 py-2 bg-surface-container-low border border-surface-variant rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                    Filtros
+                </button>
+</div>
+</div>
+<!-- Bento Grid of Employee Cards -->
+<div id="employee-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<div class="col-span-full text-on-surface-variant">Carregando...</div>
+</div>
+<!-- Employee Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant custom-shadow overflow-hidden group hover:border-primary/30 transition-all duration-300">
+<div class="h-2 bg-primary"></div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-surface-variant bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a smiling female employee in a clean, modern corporate office setting. The lighting is soft and natural, emphasizing a high-contrast yet friendly administrative aesthetic. She wears a professional navy blazer. The background is slightly blurred with soft warm tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx-seBA8Xcaq2J9JzoKx94GrcqJbQM5IPWIsH2sSuchlp3kSyJ9qukXAyJkcwMjKqHvdHIX-jsSTIb2CjFCOOq1CaMB-cNQI64xXy6y-BoWOYaj4TU3GaV5ixHH212p7izO8noSgbJrHAvHQyxFpEziHXHZcFcjUwY300Fqhk8_oyfGNITT20G-pqpsqdUOm2hXblgKFeBfJzFU5ePc0NNial2-4VDBrpE_XWqCz13WcdkQ9EnqMSa"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Ana Paula Silva</h3>
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-[10px] font-bold uppercase tracking-wider">Ativo</span>
+</div>
+</div>
+<div class="space-y-3 pt-4 border-t border-surface-variant/50">
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">Departamento</span>
+<span class="text-body-md font-medium text-on-surface">Administrativo</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">Supervisor</span>
+<span class="text-body-md font-medium text-on-surface">Roberto Costa</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">ID Registro</span>
+<span class="text-body-md font-medium text-on-surface">#OG-0244</span>
+</div>
+</div>
+<div class="mt-6 flex gap-2">
+<button class="flex-1 py-2 bg-surface-container-low text-on-surface-variant rounded-lg font-label-md text-label-md hover:bg-secondary-fixed hover:text-on-secondary-fixed-variant transition-all">Editar</button>
+<button class="p-2 border border-surface-variant rounded-lg text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Employee Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant custom-shadow overflow-hidden group hover:border-primary/30 transition-all duration-300">
+<div class="h-2 bg-secondary"></div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-surface-variant bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged male employee with glasses, looking confident in a modern workspace. He wears a formal white shirt. The background consists of a minimalist corporate interior with glass partitions and soft overhead light-mode illumination. Professional and reliable atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqWLwR9s5hruQbhhOdClUt7EbkDsrokzX89fyo3ylabcaA6F_QameLghjZF2k0HNPj39sGde2zTZVb71qNytY9pB79MxFpT9AnoOdEI_GcLX8GTRX-6XIZvueBX2ke-O2Wz16Xurd2TGlrI1wfhJNVDdHWfgC29NgcRa5YzuBbEC_7sRPP_3o7TbhfUgjWm4mRyjZUHbZVm0ix51sDM7j2GBPcK1OlJCUHODCYoYQCZeX3YSFNipRN"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Marcos Oliveira</h3>
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-[10px] font-bold uppercase tracking-wider">Ativo</span>
+</div>
+</div>
+<div class="space-y-3 pt-4 border-t border-surface-variant/50">
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">Departamento</span>
+<span class="text-body-md font-medium text-on-surface">Logística</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">Supervisor</span>
+<span class="text-body-md font-medium text-on-surface">Sandra Lima</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">ID Registro</span>
+<span class="text-body-md font-medium text-on-surface">#OG-0312</span>
+</div>
+</div>
+<div class="mt-6 flex gap-2">
+<button class="flex-1 py-2 bg-surface-container-low text-on-surface-variant rounded-lg font-label-md text-label-md hover:bg-secondary-fixed hover:text-on-secondary-fixed-variant transition-all">Editar</button>
+<button class="p-2 border border-surface-variant rounded-lg text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Employee Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant custom-shadow overflow-hidden group hover:border-primary/30 transition-all duration-300">
+<div class="h-2 bg-tertiary"></div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-surface-variant bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young male employee with a friendly expression, wearing a company-branded polo shirt. He is in a brightly lit, clean industrial or warehouse setting that looks modern and professional. The scene uses a corporate color palette with clean lines and soft ambient lighting for a high-quality administrative feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD76vu0D7nmhsExojbTcBf22z8MS1HE8haKMJRDXBHac9Iq8c9RUa3EmGSwxHrmptikoNGAjtazzHZhWAqAXwAi1J9hB1-kxWwS3jvfB9XC8uKcAaRiINdbhxmwlRsjH_h0Boxno3Ad4dg9MCgbYDzn9UeF3wL3-2H-tzgSil2QJAV6iEE6rf4bW_ZV_ADan3ynZG9ytSxfwewyKyi6IRkWmaCTuRZcdBUoBxVGy3hagwwFGbx-wb2k"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Juliano Souza</h3>
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-[10px] font-bold uppercase tracking-wider">Ativo</span>
+</div>
+</div>
+<div class="space-y-3 pt-4 border-t border-surface-variant/50">
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">Departamento</span>
+<span class="text-body-md font-medium text-on-surface">Produção</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">Supervisor</span>
+<span class="text-body-md font-medium text-on-surface">Roberto Costa</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">ID Registro</span>
+<span class="text-body-md font-medium text-on-surface">#OG-0881</span>
+</div>
+</div>
+<div class="mt-6 flex gap-2">
+<button class="flex-1 py-2 bg-surface-container-low text-on-surface-variant rounded-lg font-label-md text-label-md hover:bg-secondary-fixed hover:text-on-secondary-fixed-variant transition-all">Editar</button>
+<button class="p-2 border border-surface-variant rounded-lg text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Employee Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant custom-shadow overflow-hidden group hover:border-primary/30 transition-all duration-300">
+<div class="h-2 bg-primary"></div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-surface-variant bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="A sharp professional portrait of a woman in her 30s with her hair tied back, wearing a light grey blazer. The lighting is crisp and modern, set against a blurred background of a contemporary business lounge. The aesthetic is corporate, clean, and highly functional, aligning with a professional document management system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgfaj940YLHXmRg0JpGYM08L71jO-2ioFEzU0ns4FWocJMYrh9TFBnT1XiHxYXx0zkdYL4bj6qiLnRucoBKg5Qb12sZRME70_0_9wwrE8oXhFcdl7CTuwUEQeEXntiBQEgR9C25QPWasogYEpZVCF4qWmppHtubZd63xbMyH9CoO4RFDkws9Ntwz-L7KpBT3k8VGZCEi0IcZgKv661L929qcNHjBQK44yS9PVbgnkHqyMXPROkU65x"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Beatriz Mendes</h3>
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-[10px] font-bold uppercase tracking-wider">Ativo</span>
+</div>
+</div>
+<div class="space-y-3 pt-4 border-t border-surface-variant/50">
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">Departamento</span>
+<span class="text-body-md font-medium text-on-surface">Vendas</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">Supervisor</span>
+<span class="text-body-md font-medium text-on-surface">Sandra Lima</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">ID Registro</span>
+<span class="text-body-md font-medium text-on-surface">#OG-0562</span>
+</div>
+</div>
+<div class="mt-6 flex gap-2">
+<button class="flex-1 py-2 bg-surface-container-low text-on-surface-variant rounded-lg font-label-md text-label-md hover:bg-secondary-fixed hover:text-on-secondary-fixed-variant transition-all">Editar</button>
+<button class="p-2 border border-surface-variant rounded-lg text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Employee Card 5 -->
+<div class="bg-surface-container-lowest/60 rounded-xl border border-surface-variant/50 custom-shadow overflow-hidden group">
+<div class="h-2 bg-error"></div>
+<div class="p-6 opacity-80">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-surface-variant bg-surface-container-low grayscale">
+<img class="w-full h-full object-cover" data-alt="A corporate style headshot of a professional man in a dark shirt, presented in a black and white high-contrast style. He is in a minimalist office environment. The overall feel is serious and administrative, fitting for an inactive employee record in a modern management database." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSNvDTaC3fRJE2y4U8Pf269_36NjUcBsRabf01b1py1CbV9fylD7ai_wbdOxPJk0DsSQduaXe7ixJ0lFhN756VIldPWCaZvfZcFRihcaKAMztziNcGVqoUmj7IwSEuS17deBuL1VIhZ5zxbHqONqVmHs4L5MQk0Aj0H-JmAJEk-y_wKsNCR20wLwW9223y6ztbrhNxUUMl2_VB7Pf6Ewdu10fBPJaN8DZRD-6oPb58pK6VlFQHyRta"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Cláudio Ramos</h3>
+<span class="px-2 py-0.5 bg-error-container text-on-error-container rounded-full text-[10px] font-bold uppercase tracking-wider">Inativo</span>
+</div>
+</div>
+<div class="space-y-3 pt-4 border-t border-surface-variant/50">
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">Departamento</span>
+<span class="text-body-md font-medium text-on-surface">Produção</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">Supervisor</span>
+<span class="text-body-md font-medium text-on-surface">Roberto Costa</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-tighter">ID Registro</span>
+<span class="text-body-md font-medium text-on-surface">#OG-0105</span>
+</div>
+</div>
+<div class="mt-6 flex gap-2">
+<button class="flex-1 py-2 bg-surface-container-low text-on-surface-variant rounded-lg font-label-md text-label-md transition-all">Reativar</button>
+<button class="p-2 border border-surface-variant rounded-lg text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Add New Placeholder Card -->
+<button class="bg-surface border-2 border-dashed border-outline-variant rounded-xl flex flex-col items-center justify-center p-8 group hover:bg-white hover:border-primary transition-all duration-300">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary-fixed transition-all">
+<span class="material-symbols-outlined text-primary text-[32px]">add</span>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface-variant group-hover:text-primary">Novo Funcionário</span>
+<p class="text-body-md text-on-surface-variant text-center mt-2 px-4">Cadastre um novo colaborador no sistema administrativo</p>
+</button>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-surface-variant pt-6">
+<span class="text-body-md text-on-surface-variant">Exibindo 5 de 42 funcionários</span>
+<div class="flex items-center gap-1">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-variant text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">3</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">...</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-surface-variant text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- SideNavBar (Mobile Bottom) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-lowest border-t border-surface-variant flex justify-around p-4 z-50">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">add_task</span>
+<span class="text-[10px] font-medium">Nova</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px] font-medium">Histórico</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">badge</span>
+<span class="text-[10px] font-bold">Funcionários</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Ajustes</span>
+</a>
+</nav>
+<!-- Success Feedback Overlay (Hidden by default) -->
+<div class="fixed bottom-24 md:bottom-8 right-8 bg-inverse-surface text-inverse-on-surface px-6 py-4 rounded-lg shadow-xl translate-y-32 opacity-0 transition-all duration-500 z-[100] flex items-center gap-3" id="toast">
+<span class="material-symbols-outlined text-tertiary-fixed">check_circle</span>
+<span class="font-body-md text-body-md">Funcionário salvo com sucesso!</span>
+</div>
+<script>
+        // Micro-interaction: Simulate adding/editing feedback
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 3000);
+        }
+
+        // Add subtle hover effects for the cards
+        const cards = document.querySelectorAll('.bg-surface-container-lowest');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('scale-[1.01]');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('scale-[1.01]');
+            });
+        });
+    </script>
+</body></html>

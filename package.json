@@ -1,0 +1,14 @@
+{
+  "name": "oggi-sorvetes-admin",
+  "version": "1.0.0",
+  "description": "Sistema de autorizações com navegação entre telas e API local",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "sql.js": "^1.10.0"
+  }
+}
