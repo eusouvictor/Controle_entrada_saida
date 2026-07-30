@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Configurações - Oggi Sorvetes Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="/public/app.js"></script>
+<script src="js/tailwind-config.js"></script>
+<link rel="stylesheet" href="css/configuracao.css"/>
+</head>
+<body class="text-on-surface">
+<!-- Top Navigation Bar (Shared Component Execution) -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-lowest shadow-sm dark:shadow-none border-b border-surface-variant sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="font-headline-lg text-headline-lg text-primary font-bold">Oggi Sorvetes Admin</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="/">Nova Autorização</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="/HistoricoAutorizacao.html">Histórico</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="/GestaoFuncionarios.html">Funcionários</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="/ConfiguracaoFuncionario.html">Configurações</a>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-8 md:flex gap-8">
+<!-- Side Navigation (Shared Component Execution) -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-100px)] w-64 bg-surface-container-lowest dark:bg-surface-container-lowest border-r border-surface-variant shadow-sm p-4 gap-2 rounded-xl sticky top-[88px]">
+<div class="mb-6 px-2">
+<h2 class="font-headline-md text-headline-md text-primary font-black">Gestão Oggi</h2>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Portal Administrativo</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-all duration-150 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">add_task</span>
+                    Nova Autorização
+                </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-all duration-150 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">history</span>
+                    Histórico
+                </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-all duration-150 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">badge</span>
+                    Funcionários
+                </a>
+<a class="flex items-center gap-3 p-3 bg-secondary-fixed text-on-secondary-fixed-variant rounded-lg font-bold transition-all duration-150 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Configurações
+                </a>
+</nav>
+<div class="pt-4 border-t border-surface-variant space-y-1">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-all duration-150 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">help</span>
+                    Suporte
+                </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-all duration-150 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                    Sair
+                </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<section class="flex-1 max-w-container-max mx-auto">
+<header class="text-center mb-10">
+<img alt="Oggi Sorvetes" class="mx-auto mb-4" data-alt="The official brand logo of Oggi Sorvetes, featuring a professional and modern pink stylized emblem on a clean white background. The design is minimalist and elegant, reflecting a high-end corporate identity for a food and beverage administrative system. Soft shadows and a light-mode aesthetic define the overall visual presentation of the company brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzjU3gPyeiOuAY-qfCVgv92_-oSH1omtqkHeQck3HzRn7FtdN8toN3WRn4x06R-nAhLRAdhWcn0xN49ydGZcyPgqmxeCICXUa9SN7nNBjjf-z_m_lckWELFX06ChJYlb_yFQcaXtdDloT1qzjvuN3ocPpxsKMLgtHVCxvVWQcOpXQHow5F4wTO0W2uX51k4JSu5jHv4eWnrYHR_9ho6z55cMyFw-uz-j278jYTA4IT2gAeLFUxycg"/>
+<h1 class="font-headline-xl text-headline-xl mb-2">Configurações do Sistema</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Gerencie os parâmetros globais, equipes e identidade visual da unidade.</p>
+</header>
+<!-- Tabs Navigation -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-variant overflow-hidden mb-8">
+<div class="flex border-b border-surface-variant">
+<button class="flex-1 py-4 text-center font-label-md text-label-md transition-all tab-active" id="tab-departments" onclick="switchTab('departments')">Departamentos</button>
+<button class="flex-1 py-4 text-center font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-all" id="tab-supervisors" onclick="switchTab('supervisors')">Supervisores</button>
+<button class="flex-1 py-4 text-center font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-all" id="tab-branding" onclick="switchTab('branding')">Identidade Visual</button>
+</div>
+<div class="p-padding-card">
+<!-- Departments Tab -->
+<div class="tab-content" id="content-departments">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md">Gerenciar Departamentos</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">Adicione ou remova os setores da empresa.</p>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary px-4 py-2 rounded-lg flex items-center gap-2 transition-all font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                                Novo Setor
+                            </button>
+</div>
+<form id="department-form" class="mb-6 flex gap-3">
+<input id="department-name" class="flex-1 border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all" placeholder="Novo departamento" type="text">
+<button class="bg-primary hover:bg-primary-container text-on-primary px-4 py-2 rounded-lg transition-all font-label-md text-label-md" type="submit">Salvar</button>
+</form>
+<div id="department-form-message" class="text-sm text-primary mb-4"></div>
+<div id="department-list" class="space-y-3">
+<div class="text-on-surface-variant">Carregando...</div>
+</div>
+</div>
+<!-- Supervisors Tab -->
+<div class="tab-content hidden" id="content-supervisors">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md">Equipe de Supervisão</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">Gerencie quem pode autorizar entradas e saídas.</p>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary px-4 py-2 rounded-lg flex items-center gap-2 transition-all font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                                Adicionar Supervisor
+                            </button>
+</div>
+<form id="supervisor-form" class="mb-6 grid grid-cols-1 md:grid-cols-3 gap-3">
+<input id="supervisor-name" class="border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all" placeholder="Nome do supervisor" type="text">
+<select id="supervisor-department" class="border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all">
+<option value="">Selecione o departamento</option>
+</select>
+<select id="supervisor-email" class="border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all"/>
+</section>
