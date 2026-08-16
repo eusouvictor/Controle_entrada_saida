@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 const path = require('path');
 const frontendPath = path.join(__dirname, '..', 'frontend');
 app.use(express.static(frontendPath));
+app.use('/public', express.static(path.join(__dirname, '..', 'public')));
 
 // prefixo /api
 app.use('/api', apiRoutes);

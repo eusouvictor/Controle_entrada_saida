@@ -1,150 +1,205 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Autorização de Entrada e Saída</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <div class="page-shell">
-      <header class="topbar">
-        <div>
-          <span class="brand">Oggi Autorização</span>
-          <p class="subtitle">Gestão de entrada, saída e auditoria em fluxo 100% digital</p>
-        </div>
-        <div class="user-badge" id="currentUserBadge">
-          <strong>Usuário:</strong> <span id="currentUserName">carregando...</span>
-          <small id="currentUserRole"></small>
-        </div>
-      </header>
-
-      <main class="layout-grid">
-        <section class="card card-primary">
-          <div class="card-heading">
-            <div>
-              <h1>Nova solicitação</h1>
-              <p>Preencha com seleção de dados e registre a autorização imediatamente.</p>
-            </div>
-            <span class="badge-status">Autenticação obrigatória</span>
-          </div>
-
-          <form id="requestForm" autocomplete="off">
-            <div class="form-row">
-              <label for="colaboradorSelect">Colaborador</label>
-              <select id="colaboradorSelect" required>
-                <option value="">Selecionar colaborador</option>
-              </select>
-            </div>
-
-            <div class="form-row half">
-              <label for="matriculaField">Matrícula</label>
-              <input id="matriculaField" type="text" readonly placeholder="Preenchido automaticamente" />
-            </div>
-            <div class="form-row half">
-              <label for="cargoField">Cargo</label>
-              <input id="cargoField" type="text" readonly placeholder="Preenchido automaticamente" />
-            </div>
-            <div class="form-row half">
-              <label for="departamentoSelect">Departamento</label>
-              <select id="departamentoSelect" required>
-                <option value="">Selecionar departamento</option>
-              </select>
-            </div>
-            <div class="form-row half">
-              <label for="tipoSelect">Tipo de autorização</label>
-              <select id="tipoSelect" required>
-                <option value="">Selecionar tipo</option>
-                <option value="entrada">Entrada</option>
-                <option value="saida">Saída</option>
-              </select>
-            </div>
-
-            <div class="form-row">
-              <label for="motivoField">Motivo</label>
-              <textarea id="motivoField" rows="3" placeholder="Descreva o motivo da saída ou entrada"></textarea>
-            </div>
-
-            <div class="form-row half">
-              <label for="supervisorSelect">Supervisor responsável</label>
-              <select id="supervisorSelect" required>
-                <option value="">Selecionar supervisor</option>
-              </select>
-            </div>
-            <div class="form-row half">
-              <label for="solicitacaoAt">Data e hora do registro</label>
-              <input id="solicitacaoAt" type="text" readonly />
-            </div>
-
-            <div class="actions-row">
-              <button type="button" id="saveRequest">Registrar solicitação</button>
-              <button type="button" id="resetForm" class="secondary">Limpar</button>
-            </div>
-          </form>
-        </section>
-
-        <section class="card card-secondary">
-          <div class="card-heading">
-            <h2>Controle e auditoria</h2>
-          </div>
-          <div class="info-grid">
-            <div class="info-box">
-              <strong>Fluxo paperless</strong>
-              <p>O RH emite a autorização digital e a Portaria confirma a saída ou entrada.</p>
-            </div>
-            <div class="info-box">
-              <strong>Registro de acesso</strong>
-              <p>Registros de confirmações são persistidos em <code>registros_acesso</code>.</p>
-            </div>
-            <div class="info-box">
-              <strong>Auditoria</strong>
-              <p>Todas as ações ficam em <code>auditoria</code> com hora, usuário e operação.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="card card-tertiary">
-          <div class="card-heading">
-            <h2>Solicitações recentes</h2>
-          </div>
-          <div class="table-container">
-            <table id="requestsTable">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Colaborador</th>
-                  <th>Departamento</th>
-                  <th>Tipo</th>
-                  <th>Status</th>
-                  <th>Enviado em</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="card card-tertiary">
-          <div class="card-heading">
-            <h2>Últimos acessos</h2>
-          </div>
-          <div class="table-container">
-            <table id="accessTable">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Solicitação</th>
-                  <th>Portaria</th>
-                  <th>Confirmado em</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </section>
-      </main>
-    </div>
-
-    <script src="js/app.js"></script>
-  </body>
-</html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Nova Autorização - Oggi Sorvetes Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="js/main.js"></script>
+<script src="js/tailwind-config.js"></script>
+<link rel="stylesheet" href="css/formulario.css">
+</head>
+<body class="bg-background text-on-background min-h-screen pb-12">
+<!-- Top Navigation Bar -->
+<header class="no-print sticky top-0 z-50 bg-surface-container-lowest shadow-sm border-b border-surface-variant mb-8">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg text-primary font-bold">Oggi Sorvetes Admin</span>
+<div class="hidden md:flex gap-6">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md hover:text-primary transition-colors duration-200" href="/">Nova Autorização</a>
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="/HistoricoAutorizacao.html">Histórico</a>
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="/GestaoFuncionarios.html">Funcionários</a>
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="/ConfiguracaoFuncionario.html">Configurações</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">account_circle</button>
+</div>
+</nav>
+</header>
+<main class="max-w-[800px] mx-auto px-4 md:px-0">
+<!-- Page Header -->
+<div class="text-center mb-8 no-print">
+<div class="flex justify-center mb-4">
+<img class="h-16 object-contain" data-alt="Modern high-resolution logo of Oggi Sorvetes, a Brazilian ice cream brand, featuring playful pink typography on a clean white background. The logo is central and clear, representing corporate reliability and friendly service. Professional lighting ensures the pink hue looks vibrant and accurate to the brand's identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb6MCXAbo5HjHQvbghSG9wA2tH0pDMg7pw1h6L6YGVPCZoYWTRg2dZAhOovJ_K_5hFvnEdiiCqF1IYpA6RRBl1bhKWUqfwRfAUWYq0kf41R0Epyqrsseveez8TvNvKqln_SNzBLstjwYc17mg5sysUDi7NhUYXGTVlvPEc9RZvjzZRHm-fosXx-JuE0fR26l3hmZClnEEob0OA1ZOpW6I74uOJkLdwh7s1KNUTwjItCq7xJguh_41c">
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface">Autorização de Saída/Entrada</h1>
+<p class="text-on-surface-variant font-body-md text-body-md mt-2">Preencha o formulário abaixo para gerar a autorização</p>
+</div>
+<!-- Form Container -->
+<div class="main-card bg-surface-container-lowest rounded-lg shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05),0_2px_4px_-1px_rgba(0,0,0,0.03)] p-6 md:p-10">
+<form id="authorizationForm">
+<!-- Type Selection -->
+<div class="bg-surface-container-low rounded-lg p-4 mb-8 flex gap-8 items-center border border-surface-variant/30">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-4 h-4 text-primary focus:ring-primary border-outline rounded-sm transition-all" name="auth_type" type="radio" value="entrada">
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary">Entrada</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-4 h-4 text-primary focus:ring-primary border-outline rounded-sm transition-all" name="auth_type" type="radio" value="saida">
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary">Saída</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-4 h-4 text-primary focus:ring-primary border-outline rounded-sm transition-all" name="auth_type" type="radio" value="dia">
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary">Dia</span>
+</label>
+</div>
+<!-- Section: Dados do Funcionário -->
+<div class="mb-10">
+<h2 class="form-section-title font-headline-md text-headline-md text-on-surface font-semibold">Dados do Funcionário</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-6">
+<div class="md:col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Nome *</label>
+<input id="employeeName" class="w-full border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all" placeholder="Nome completo" type="text">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Supervisor *</label>
+<input id="supervisorName" class="w-full border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all" placeholder="Nome do supervisor" type="text">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Departamento *</label>
+<input id="departmentName" class="w-full border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all" placeholder="Departamento" type="text">
+</div>
+<div class="md:col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Horário de Trabalho *</label>
+<input id="workSchedule" class="w-full border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all" placeholder="Ex: 08:00 - 17:00" type="text">
+</div>
+</div>
+</div>
+<!-- Section: Informações de Liberação -->
+<div class="mb-10">
+<h2 class="form-section-title font-headline-md text-headline-md text-on-surface font-semibold">Informações de Liberação</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Data *</label>
+<div class="relative">
+<input id="authorizationDate" class="w-full border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all" type="date">
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Horário de Liberação *</label>
+<div class="relative">
+<input id="releaseTime" class="w-full border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all" type="time">
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Liberado por *</label>
+<input id="releasedBy" class="w-full border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all" placeholder="Nome de quem liberou" type="text">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Assinatura</label>
+<input id="signature" class="w-full border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all" placeholder="Assinatura ou iniciais" type="text">
+</div>
+</div>
+</div>
+<!-- Section: Motivo -->
+<div class="mb-10">
+<h2 class="form-section-title font-headline-md text-headline-md text-on-surface font-semibold">Motivo da Saída/Entrada</h2>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Motivo *</label>
+<textarea id="reason" class="w-full border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg py-3 px-4 transition-all resize-none" placeholder="Descreva o motivo da saída ou entrada fora do horário" rows="4"></textarea>
+</div>
+</div>
+<div id="formMessage" class="mb-4 text-sm text-primary font-medium"></div>
+<!-- Actions -->
+<div class="flex flex-col md:flex-row gap-4 pt-6 border-t border-surface-variant no-print">
+<button class="flex-1 bg-secondary text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all" type="submit">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                        Salvar Autorização
+                    </button>
+<button class="flex-1 bg-tertiary-container text-on-tertiary-container font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all" onclick="window.print()" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                        Imprimir
+                    </button>
+<button class="flex-1 bg-tertiary-container text-on-tertiary-container font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Download
+                    </button>
+</div>
+</form>
+</div>
+<!-- Document Preview Section (Visual Representation of result) -->
+<div class="mt-16 no-print">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-6 font-bold">Prévia do Documento</h3>
+<div class="bg-white border border-surface-variant rounded-lg p-8 shadow-sm">
+<div class="flex justify-between items-start border-b-2 border-on-surface pb-4 mb-6">
+<img class="h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkVGiXnG3oaTX_RtE6sgMsQVv47Qk91qJjZc98bGinixWiFv6ugvFz_k62Rk780IOEGIznd_3f7NFkBPDJjsRGCJbUXlOR2DfNpaCHiXi3_A4cNiQsUmP3Q-biV9CkO7lrwnmoAdzc3Fqn5ksMD_g_z_cA47J6211qU3hzldMsrVZDkYRl044ScLurscElM-tJMv29L6Wv5rePl0MpQhd78lFBKC_OowBKHAISI6nN-rPK9aedupI-NXrU98zCPIexuA" alt="Oggi Sorvetes Logo">
+<div class="text-center">
+<h4 class="font-bold text-[14px] uppercase tracking-wider">Autorização de Saída/Entrada</h4>
+</div>
+<div class="text-[10px] space-y-1 font-bold text-right">
+<div class="">ENTRADA <span class="border border-on-surface inline-block w-3 h-3 align-middle ml-1"></span></div>
+<div class="">SAÍDA <span class="border border-on-surface inline-block w-3 h-3 align-middle ml-1"></span></div>
+<div class="">DIA <span class="border border-on-surface inline-block w-3 h-3 align-middle ml-1"></span></div>
+</div>
+</div>
+<div class="space-y-4 text-[12px]">
+<div class="flex items-end gap-2">
+<span class="font-bold whitespace-nowrap">Nome:</span>
+<div class="flex-grow border-b border-on-surface"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-end gap-2">
+<span class="font-bold whitespace-nowrap">Supervisor:</span>
+<div class="flex-grow border-b border-on-surface"></div>
+</div>
+<div class="flex items-end gap-2">
+<span class="font-bold whitespace-nowrap">Departamento:</span>
+<div class="flex-grow border-b border-on-surface"></div>
+</div>
+</div>
+<div class="flex items-end gap-2">
+<span class="font-bold whitespace-nowrap">Horário de Trabalho:</span>
+<div class="flex-grow border-b border-on-surface"></div>
+</div>
+<div class="pt-4">
+<p class="font-bold mb-2">Informações da data e horário de liberação</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-end gap-2">
+<span class="font-bold whitespace-nowrap">Data:</span>
+<div class="flex-grow border-b border-on-surface"></div>
+</div>
+<div class="flex items-end gap-2">
+<span class="font-bold whitespace-nowrap leading-tight">Horário que será liberado:</span>
+<div class="flex-grow border-b border-on-surface"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-end gap-2">
+<span class="font-bold whitespace-nowrap">Liberado por:</span>
+<div class="flex-grow border-b border-on-surface"></div>
+</div>
+<div class="flex items-end gap-2">
+<span class="font-bold whitespace-nowrap">Assinatura:</span>
+<div class="flex-grow border-b border-on-surface"></div>
+</div>
+</div>
+<div class="flex items-start gap-2 pt-2">
+<span class="font-bold whitespace-nowrap">Motivo:</span>
+<div class="flex-grow border-b border-on-surface h-12"></div>
+</div>
+</div>
+<div class="flex justify-between mt-12 pt-8 text-[10px] font-bold">
+<span class="">Portaria</span>
+<span class="">RH</span>
+</div>
+</div>
+</div>
+</main>
+<script src="js/formulario.js"></script>
+</body></html>
